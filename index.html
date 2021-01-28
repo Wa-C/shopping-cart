@@ -1,11 +1,168 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
+   <title>Shopping Cart</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+   <link href="style.css" rel="stylesheet">
 </head>
+
 <body>
-    
+
+   <section>
+      <div class="container">
+         <div class="cart">
+            <div class="col-md-12 col-lg-10 mx-auto">
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item">
+                        <img src="images/product-1.png" alt="">
+                        <h5>iPhone 11 128GB Black</h5>
+                     </div>
+
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button  onclick="handleProductChange('mobile',false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="mobile-amount" type="text" class="form-control text-center" value="1">
+                           <button   onclick="handleProductChange('mobile',true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <h5 id = "mobile-unit-price">$1219</h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item mx-auto">
+                        <img src="images/product-2.png" alt="">
+                        <h5>iPhone 11 Silicone Case - Black</h5>
+                     </div>
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button onclick="handleProductChange('case', false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id = "case-amount" type="text" class="form-control text-center" value="1">
+                           <button onclick="handleProductChange('case', true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
+
+                        </div>
+                        <h5 id = "case-unit-price">$59</h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+
+                     <div class="col-md-8">
+                        <h5>Subtotal: </h5>
+                        <h5>Tax:</h5>
+                        <h5>Total:</h5>
+                     </div>
+
+                     <div class="col-md-4 status">
+                        <h5>$1,278</h5>
+                        <h5>$0</h5>
+                        <h5>$1,278</h5>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-12 pt-4 pb-4">
+                  <button type="button" class="btn btn-success check-out">Check Out</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <script>
+      // 2nd evolve by merging 1st evolve
+      function handleProductChange(product, Increasing){
+      const productAmount = document.getElementById(product + "-amount");
+         const productCount = parseInt(productAmount.value);
+         //mobileNewAmount = mobileCount - 1;
+         let productNewAmount = productCount;
+         if (Increasing == true){
+            productNewAmount = productCount + 1;
+         }
+         if (Increasing == false && productNewAmount > 0){
+            productNewAmount = productCount - 1;
+         }
+         productAmount.value = productNewAmount;
+         //productNewPrice = productNewAmount * 1219 ;
+         let productNewPrice = 0 ;
+         if ( product == 'mobile'){
+            productNewPrice = productNewAmount * 1219 ;
+         }
+         if( product == 'case'){
+            productNewPrice = productNewAmount * 59 ;
+         }
+         document.getElementById(product + "-unit-price").innerText = '$' + productNewPrice;
+      }
+      // ------------------------------------------------------//
+      // 1st Evolve
+      // function handleProductChange1(Increasing){
+      // const mobileAmount = document.getElementById("mobile-amount");
+      //    const mobileCount = parseInt(mobileAmount.value);
+      //    //mobileNewAmount = mobileCount - 1;
+      //    let mobileNewAmount = mobileCount;
+      //    if (Increasing == true){
+      //       mobileNewAmount = mobileCount + 1;
+      //    }
+      //    if (Increasing == false && mobileNewAmount > 0){
+      //       mobileNewAmount = mobileCount - 1;
+      //    }
+      //    mobileAmount.value = mobileNewAmount;
+      //    mobileNewPrice = mobileNewAmount * 1219 ;
+      //    document.getElementById("mobile-unit-price").innerText = '$' + mobileNewPrice;
+      // }
+      
+      // function handleProductChange2(Increasing){
+      // const caseAmount = document.getElementById("case-amount");
+      //    const caseCount = parseInt(caseAmount.value);
+      //    //mobileNewAmount = mobileCount - 1;
+      //    let caseNewAmount = caseCount;
+      //    if (Increasing == true ){
+      //       caseNewAmount = caseCount + 1;
+      //    }
+      //    if (Increasing == false && caseNewAmount > 0){
+      //       caseNewAmount = caseCount - 1;
+      //    }
+      //    caseAmount.value = caseNewAmount;
+      //    caseNewPrice = caseNewAmount * 59 ;
+      //    document.getElementById("case-unit-price").innerText = '$' + caseNewPrice;
+      // }
+      // ------------------------------------------------------//
+
+      // ------------------------------------------------------//
+      // 1st Code - Evolve is coming. 
+      // const mobilePlus = document.getElementById("mobile-plus").addEventListener('click', function () {
+      //    const mobileAmount = document.getElementById("mobile-amount");
+      //    const mobileCount = parseInt(mobileAmount.value);
+      //    const mobileNewAmount = mobileCount + 1;
+      //    mobileAmount.value = mobileNewAmount;
+      //    const mobileNewPrice = mobileNewAmount * 1219 ;
+      //    document.getElementById("mobile-unit-price").innerText = '$' + mobileNewPrice;
+
+
+
+      // });
+      // const mobileMinus = document.getElementById("mobile-minus").addEventListener('click', function () {
+      //    const mobileAmount = document.getElementById("mobile-amount");
+      //    const mobileCount = parseInt(mobileAmount.value);
+      //    const  mobileNewAmount = mobileCount - 1;
+      //    mobileAmount.value = mobileNewAmount;
+      //    const mobileNewPrice = mobileNewAmount * 1219 ;
+      //    document.getElementById("mobile-unit-price").innerText = '$' + mobileNewPrice;
+      // });
+      // ------------------------------------------------------//
+
+
+
+
+   </script>
 </body>
+
 </html>
